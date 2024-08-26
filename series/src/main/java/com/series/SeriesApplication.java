@@ -1,11 +1,13 @@
 package com.series;
 
-import com.series.service.ConsumoAPI;
-import com.series.service.ConverteDados;
-import com.series.model.DadosSerie;
+import com.series.model.DadosTemporada;
+import com.series.principal.ClassePrincipal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class SeriesApplication implements CommandLineRunner {
@@ -13,13 +15,10 @@ public class SeriesApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(SeriesApplication.class, args);
 	}
+
 	@Override
 	public void run(String... args) throws Exception {
-		var consumoApi = new ConsumoAPI();
-		var json = consumoApi.obterDados("https://www.omdbapi.com/?t=gilmore+girls&apikey=6585022c");
-		System.out.println(json);
-		ConverteDados conversor = new ConverteDados();
-		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
-		System.out.println(dados);
+		ClassePrincipal principal = new ClassePrincipal();
+		principal.exibeMenu();
 	}
 }
